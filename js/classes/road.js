@@ -92,7 +92,9 @@ class Road extends Phaser.GameObjects.Container
             this.car.alpha=1;
         }
         if (this.object.y>game.config.height)
-        {
+        {   
+            emitter.emit(G.UP_POINTS,1);
+            //
             this.object.destroy();
             this.addObject();
         }
