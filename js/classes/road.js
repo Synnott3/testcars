@@ -44,7 +44,7 @@ class Road extends Phaser.GameObjects.Container
         {
             this.object.x=this.displayWidth/4;
         }
-        Align.scaleToGameW(this.object,scale);
+        Align.scaleToGameW(this.object,scale);  
         this.add(this.object);
     }
     changeLanes()
