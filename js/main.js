@@ -14,7 +14,7 @@ window.onload = function () {
             width: 480,
             height: 640,
             parent: 'phaser-game',
-            scene: [SceneMain]
+            scene: [SceneTitle,SceneMain,SceneOver]
         };
     }
     else {
@@ -23,11 +23,13 @@ window.onload = function () {
             width: window.innerWidth,
             height: window.innerHeight,
             parent: 'phaser-game',
-            scene: [SceneMain]
+            scene: [SceneTitle,SceneMain,SceneOver]
         };
     }
     console.log(config);
     G = new Constants();
     model = new Model();
+    model.isMobile=isMobile;
     game = new Phaser.Game(config);
+
 }
