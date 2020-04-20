@@ -12,10 +12,22 @@ class SceneMain extends Phaser.Scene {
         this.load.image("cone","images/cone.png");
         this.load.image("barrier","images/barrier.png");
 
+        this.load.image("toggleBack", "images/ui/toggles/1.png");
+        this.load.image("sfxOff", "images/ui/icons/sfx_off.png");
+        this.load.image("sfxOn", "images/ui/icons/sfx_on.png");
+        this.load.image("musicOn", "images/ui/icons/music_on.png");
+        this.load.image("musicOff", "images/ui/icons/music_off.png");
+
+        this.load.audio('backgroundMusic',["audio/random-race.mp3","audio/random-race.ogg"]);
+        this.load.audio('boom',["audio/boom.mp3","audio/boom.ogg"]);
+        this.load.audio('whoosh',["audio/whoosh.mp3","audio/whoosh.ogg"]);
+
     }
     create() { //define objects
         emitter=new Phaser.Events.EventEmitter();
         controller=new Controller();
+        var mediaManager=new MediaManager({scene:this});
+        Model.gameOver=false;
 
         this.sb=new ScoreBox({scene:this});
         this.sb.x=game.config.width-50;
@@ -26,8 +38,10 @@ class SceneMain extends Phaser.Scene {
         this.road.makeLines();
 
         this.AlignGrid=new AlignGrid({scene:this,rows:5,cols:5}); 
-        this.AlignGrid.showNumbers();
+        //this.AlignGrid.showNumbers();
         this.AlignGrid.placeAtIndex(4,this.sb);
+
+        var soundButtons=new SoundButtons({scene:this});
     }
     update() {
         this.road.moveLines();

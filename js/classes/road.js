@@ -80,16 +80,24 @@ class Road extends Phaser.GameObjects.Container
             }.bind(this));
         }
     }
+    goGameOver()
+    {
+        this.scene.start('SceneOver');
+    }
     moveObject()
     {
+        
         this.object.y += this.vSpace/this.object.speed; 
         if(Collision.checkCollide(this.car,this.object)==true)
         {
-            this.car.alpha=.5;
+           // this.car.alpha=.5;
+            model.gameOver=true;
+            this.scene.tweens.add({targets: this.car,duration: 1000,y:game.config.height,angle:-270});
+            this.scene.time.addEvent({ delay: 2000, callback: this.goGameOver, callbackScope: this.scene, loop: false });
         }
         else
         {
-            this.car.alpha=1;
+            //this.car.alpha=1;
         }
         if (this.object.y>game.config.height)
         {   
