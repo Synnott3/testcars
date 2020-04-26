@@ -5,6 +5,7 @@ class SceneLoad extends Phaser.Scene {
 
     preload()
     {
+        this.bar=new Bar({scene:this,x:240,y:320});
         this.progText=this.add.text(game.config.width/2,game.config.height/2,"0%",{color:'#ffffff',fontSize:game.config.width/20});
         this.progText.setOrigin(0.5,0.5);
         this.load.on('progress', this.onProgress, this);
@@ -31,8 +32,9 @@ class SceneLoad extends Phaser.Scene {
     onProgress(value)
     {
         console.log(value);
+        this.bar.setPercent(value);
         var per=Math.floor(value*100); 
-        this.progText.setText(per*"%");
+        this.progText.setText(per+"%");
     }
     create()
     {
