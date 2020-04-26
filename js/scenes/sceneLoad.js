@@ -5,11 +5,12 @@ class SceneLoad extends Phaser.Scene {
 
     preload()
     {
-        this.bar=new Bar({scene:this,x:240,y:320});
+        this.bar=new Bar({scene:this,x:game.config.width/2,y:game.config.height/2});
         this.progText=this.add.text(game.config.width/2,game.config.height/2,"0%",{color:'#ffffff',fontSize:game.config.width/20});
         this.progText.setOrigin(0.5,0.5);
         this.load.on('progress', this.onProgress, this);
 
+        this.load.image("titleBack","images/titleBack.jpg");
 
         this.load.image("road","images/road.jpg");
         this.load.spritesheet("cars","images/cars.png",{frameWidth:60,frameHeight:126});
